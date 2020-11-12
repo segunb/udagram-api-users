@@ -18,4 +18,4 @@ script:
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push segunbabalola/udagram-api-users
+  - docker push segunbabalola/udagram-api-users:latest
