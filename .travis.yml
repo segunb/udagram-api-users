@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - 13
+
+services:
+  - docker
+
+install:
+  - echo "Executing install section"
+
+before_script:
+  - echo "Executing before_scripts section"
+
+script:
+  - docker --version # print the version for logging
+  - docker build -t udagram-api-users .
+  - docker tag udagram-api-users segunbabalola/udagram-api-users:latest
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push segunbabalola/udagram-api-users
